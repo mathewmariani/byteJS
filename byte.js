@@ -1,3 +1,8 @@
+// npm package compatibility
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = byte;
+}
+
 function byte() {
     this.fields = [];
     for (i = 0; i < arguments.length; i++) {
