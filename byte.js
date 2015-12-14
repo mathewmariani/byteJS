@@ -1,9 +1,9 @@
 // npm package compatibility
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = byte;
+if(typeof module !== 'undefined' && module.exports) {
+  module.exports = Byte;
 }
 
-function byte() {
+function Byte() {
     this.fields = [];
     for (i = 0; i < arguments.length; i++) {
         if (arguments[i] > 32) {
@@ -15,7 +15,11 @@ function byte() {
     }
 }
 
-byte.prototype.pack = function () {
+Byte.prototype.pack = function () {
+    if (arguments.length > this.fields.length) {
+        throw new Error('Trying to pack more variables than fields.');
+    }
+
     var package;
     for (i = 0; i <= this.fields.length - 1; i++) {
         // Shifts a in binary representation b (< 32) bits to the left, shifting in zeroes from the right.
