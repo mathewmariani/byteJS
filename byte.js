@@ -3,6 +3,10 @@ if(typeof module !== 'undefined' && module.exports) {
   module.exports = Byte;
 }
 
+/**
+ * byteJS constructor takes n arguments representing field length
+ * @throws {Error} Javascript only supports bitwise operations for 32 bit integers!
+ */
 function Byte() {
     this.fields = [];
     for (i = 0; i < arguments.length; i++) {
@@ -15,6 +19,11 @@ function Byte() {
     }
 }
 
+/**
+ * [[Description]]
+ * @throws {Error} Trying to pack more variables than fields.
+ * @returns {number} this will return a number composed of the value of the binary fields.
+ */
 Byte.prototype.pack = function () {
     if (arguments.length > this.fields.length) {
         throw new Error('Trying to pack more variables than fields.');
